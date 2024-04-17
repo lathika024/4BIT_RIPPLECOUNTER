@@ -22,28 +22,17 @@ STEP:7 compare the output with truth table.
 # D - Flip flop
 ![image](https://github.com/RESMIRNAIR/4BIT_RIPPLECOUNTER/assets/154305926/7fb0da71-700b-4a53-b2c1-2afa523e89c4)
 # verilog code
-module synchronous_up_counter(
-
-input wire clk,   // Clock input
-
-input wire reset, // Reset input
-
-output reg [3:0] count // 4-bit output
+module ripple_counter(
+    input clk,
+    input rst,
+    output reg [3:0] count
 );
 
-// Reset the counter to 0 when reset is active
-
-always @(posedge clk or posedge reset)
-
-begin
-
-if (reset)
-
-    count <= 4'b0000;
-    
-else
-
-    count <= count + 1; // Increment the count on each clock cycle
+always @(posedge clk or posedge rst) begin
+    if (rst)
+        count <= 4'b0000;
+    else
+        count <= count + 1;
 end
 
 endmodule
